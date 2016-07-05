@@ -15,6 +15,10 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Progressor.Shared", "Progre
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Progressor.Tests", "Progressor.Tests\Progressor.Tests.csproj", "{84039442-D583-4A60-8782-2D8A502B93F1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Progressor.Samples.Console", "_Samples\Progressor.Samples.Console\Progressor.Samples.Console.csproj", "{2365DFE2-05D7-4ECB-8BB0-FDA1E544F3F7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{10EDA960-3C57-42C0-A861-F4CA9D753109}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Progressor.Shared\Progressor.Shared.projitems*{f0a5114e-37d5-4fe9-9a2b-7c3b838d480b}*SharedItemsImports = 13
@@ -37,8 +41,15 @@ Global
 		{84039442-D583-4A60-8782-2D8A502B93F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84039442-D583-4A60-8782-2D8A502B93F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84039442-D583-4A60-8782-2D8A502B93F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2365DFE2-05D7-4ECB-8BB0-FDA1E544F3F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2365DFE2-05D7-4ECB-8BB0-FDA1E544F3F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2365DFE2-05D7-4ECB-8BB0-FDA1E544F3F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2365DFE2-05D7-4ECB-8BB0-FDA1E544F3F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2365DFE2-05D7-4ECB-8BB0-FDA1E544F3F7} = {10EDA960-3C57-42C0-A861-F4CA9D753109}
 	EndGlobalSection
 EndGlobal

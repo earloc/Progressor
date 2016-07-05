@@ -14,6 +14,12 @@ namespace Progressor.Contractors {
         private readonly int _TotalCount;
         private int _Progress;
 
+        public int Count {
+            get {
+                return _TotalCount;
+            }
+        }
+
         public ProgressiveIterator(IEnumerable<T> source, int? totalCount = null) {
             if (source == null)
                 throw new ArgumentNullException(nameof(source), "must not be null");

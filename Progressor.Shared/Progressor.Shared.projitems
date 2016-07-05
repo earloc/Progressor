@@ -9,9 +9,6 @@
     <Import_RootNamespace>Progressor.Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)Progressor.snk" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)AssemblyInfo.Shared.cs" />
   </ItemGroup>
 </Project>

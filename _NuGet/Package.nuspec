@@ -2,25 +2,25 @@
 <package >
   <metadata>
     <id>Progressor</id>
-    <version>0.2.0</version>
+    <version>0.2.1</version>
     <title>Progressor</title>
     <authors>Alexander Clare</authors>
     <owners>Alexander Clare</owners>
     <description>
-      Calculate progress - simple, fast, versatile
+      Calculate progress - simple, fast, versatile, cross-platform
     </description>
     <releaseNotes>
     </releaseNotes>
     <summary>
-      Calculate progress - simple, fast, versatile
+      Calculate progress - simple, fast, versatile, cross-platform
     </summary>
     <language>en-US</language>
-    <projectUrl>https://nuget.org/packages/Progressor</projectUrl>
+    <projectUrl>https://github.com/earloc/Progressor</projectUrl>
     <iconUrl>https://nuget.org/Content/Images/packageDefaultIcon-50x50.png</iconUrl>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <licenseUrl>https://opensource.org/licenses/gpl-2.0.php</licenseUrl>
     <references></references>
-    <tags></tags>
+    <tags>progress calculate percent cross platform fast simple</tags>
   </metadata>
   <files>
     <file src="lib\" target="lib" />

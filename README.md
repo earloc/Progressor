@@ -1,2 +1,2 @@
 # Progressor
-Simple, Fast, Versatile Progress Calulation
+Calculate progress - simple, fast, versatile, cross-platform
