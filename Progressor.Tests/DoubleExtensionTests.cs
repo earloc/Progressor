@@ -67,5 +67,32 @@ namespace Progressor.Tests {
 
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void AsPercentOfReturns50PercentFor50From100() {
+
+            var actual = 50d.AsPercentOf(100);
+            var expected = 50d;
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void AsPercentOfReturns50PercentFor500From1000() {
+
+            var actual = 500d.AsPercentOf(1000);
+            var expected = 50d;
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void AsPercentOfReturns0PercentFor0From100() {
+
+            var actual = 0d.AsPercentOf(100);
+            var expected = 0d;
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
