@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 namespace Progressor.Extensions {
     public static class DoubleExtensions {
 
-        public static double PercentOf(this double percentile, double total) {
-            return percentile * total / 100d;
+        public static double PercentOf(this double percent, double from) {
+            return percent * from / 100d;
         }
 
         public static double AsPercentOf(this double value, double total) {
