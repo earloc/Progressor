@@ -22,5 +22,23 @@ namespace Progressor.Tests {
 
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void PercentOfReturns0For0PercentOf100() {
+
+            var actual = 0d.PercentOf(100);
+            var expected = 0d;
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void PercentOfReturns10For100PercentOf10() {
+
+            var actual = 100d.PercentOf(10);
+            var expected = 10d;
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
