@@ -41,7 +41,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Contractors\Progress.cs" />
-    <Compile Include="Contracts\IProgress.cs" />
+    <Compile Include="Contracts\IProgressInfo.cs" />
     <Compile Include="Contracts\IProgressive.cs" />
     <Compile Include="Extensions\DoubleExtensions.cs" />
     <Compile Include="Extensions\IEnumerableExtensions.cs" />
