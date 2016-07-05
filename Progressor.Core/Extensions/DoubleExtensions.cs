@@ -14,6 +14,5 @@ namespace Progressor.Extensions {
         public static double AsPercentOf(this double value, double total) {
             return value * 100d / total;
         }
-
     }
 }

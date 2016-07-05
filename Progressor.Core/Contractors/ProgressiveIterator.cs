@@ -19,11 +19,21 @@ namespace Progressor.Contractors {
 
             _Source = source;
 
-            _TotalCount = totalCount ?? source.Count();
+            if (totalCount.HasValue) {
+                if (totalCount.Value < 0)
+                    throw new ArgumentOutOfRangeException(nameof(totalCount), totalCount, "must be >= 0");
+                _TotalCount = totalCount.Value;
+            }
+            else {
+                _TotalCount = source.Count();
+                if (_TotalCount < 0) {
+                    throw new ArgumentOutOfRangeException(nameof(source), _TotalCount, "must contain 0 or more items");
+                }
+            }
         }
 
         public IEnumerator<IProgressInfo<T>> GetEnumerator() {
-            return _Source.Select((x, i) => new ProgressInfo<T>(x, 0, 0)).GetEnumerator();
+            return _Source.Select((x, i) => new ProgressInfo<T>(x, i + 1, _TotalCount)).GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator() {

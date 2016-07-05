@@ -1,4 +1,5 @@
-﻿using Progressor.Contracts;
+﻿using Progressor.Contractors;
+using Progressor.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace Progressor.Extensions {
     public static class IEnumerableExtensions {
 
         public static IProgressive<T> AsProgressive<T> (this IEnumerable<T> source, int? totalCount = null) {
-            return null;
+            return new ProgressiveIterator<T>(source, totalCount);
         }
 
     }
