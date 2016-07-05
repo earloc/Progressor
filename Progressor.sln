@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_NuGet", "_NuGet\_NuGet.csproj", "{0451BAEF-DF2E-4B98-8644-94EE9415E389}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Progressor.Core", "Progressor.Core\Progressor.Core.csproj", "{FEBB0957-CF47-448E-965B-CCE783CE8BDC}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Progressor.Shared", "Progressor.Shared\Progressor.Shared.shproj", "{F0A5114E-37D5-4FE9-9A2B-7C3B838D480B}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Progressor.Shared\Progressor.Shared.projitems*{f0a5114e-37d5-4fe9-9a2b-7c3b838d480b}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0451BAEF-DF2E-4B98-8644-94EE9415E389}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0451BAEF-DF2E-4B98-8644-94EE9415E389}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0451BAEF-DF2E-4B98-8644-94EE9415E389}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0451BAEF-DF2E-4B98-8644-94EE9415E389}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEBB0957-CF47-448E-965B-CCE783CE8BDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEBB0957-CF47-448E-965B-CCE783CE8BDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEBB0957-CF47-448E-965B-CCE783CE8BDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEBB0957-CF47-448E-965B-CCE783CE8BDC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
