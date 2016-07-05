@@ -40,7 +40,10 @@
     <AssemblyOriginatorKeyFile>..\Progressor.Shared\Progressor.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IProgress.cs" />
+    <Compile Include="Contracts\IProgressive.cs" />
     <Compile Include="Extensions\DoubleExtensions.cs" />
+    <Compile Include="Extensions\IEnumerableExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
