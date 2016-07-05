@@ -9,13 +9,12 @@ using Progressor.Extensions;
 
 namespace Progressor {
     public class Progressor {
-        private int _A;
         public Progressor(params int[] distribution) {
             if (distribution == null)
                 throw new ArgumentNullException(nameof(distribution), "must not be null");
 
             if (distribution.Length <= 0)
-                throw new ArgumentOutOfRangeException(nameof(distribution), "must contain mor than 0 elements");
+                throw new ArgumentOutOfRangeException(nameof(distribution), "must contain more than 0 elements");
 
             var sum = distribution.Sum();
 
