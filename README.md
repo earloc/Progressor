@@ -1,18 +1,16 @@
 # Progressor
+====================================
 Calculate progress - simple, fast, versatile, cross-platform
 
-# how does it work?
-Simple:
-  var items = Enumerable.Range(1, 750).AsProgressive();
+## how to start?
+------------------------------------
 
-items.ProgressChanged += (sender, e) => WriteLine(0, $"Progress: {e.Current}%");
+grab the [NuGet-Package] (https://nuget.org/earloc/Progressor) or install directly via
+> PM> Install-Package Progressor
 
-var rand = new Random();
+use it
 
-foreach (var x in items) {
-    WriteLine(1, $"Item: {x.Item} / {items.Count}, Progress: {x.Progress}%, Percent: {x.Percent} %");
-    Thread.Sleep(rand.Next(100));
-}
+    foreach (var x in Enumerable.Range(1, 750).AsProgressive())
+        WriteLine(1, $"Item: {x.Item} / {items.Count}, Progress: {x.Progress}%, Percent: {x.Percent} %");
 
-System.Console.WriteLine("done");
-System.Console.ReadKey();
+and make sure to check out the [Wiki-Page] (https://github.com/earloc/Progressor/wiki)
