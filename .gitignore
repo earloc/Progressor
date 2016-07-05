@@ -148,9 +148,8 @@ publish/
 
 # NuGet Packages
 *.nupkg
-
+*.nupkg.bak
 # Backup-Files
-*.bak
 
 # The packages folder can be ignored because of Package Restore
 **/packages/*
