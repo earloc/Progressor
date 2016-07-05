@@ -40,6 +40,7 @@
     <AssemblyOriginatorKeyFile>..\Progressor.Shared\Progressor.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Extensions\DoubleExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
