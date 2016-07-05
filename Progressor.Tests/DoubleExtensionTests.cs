@@ -12,7 +12,6 @@ namespace Progressor.Tests {
             var expected = 50d;
 
             Assert.AreEqual(expected, actual);
-
         }
 
         [TestMethod]
@@ -22,9 +21,6 @@ namespace Progressor.Tests {
             var expected = 500d;
 
             Assert.AreEqual(expected, actual);
-
         }
-
-
     }
 }
