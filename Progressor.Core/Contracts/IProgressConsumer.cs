@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Progressor.Contracts {
-    public interface IProgressive<T> : IEnumerable<IProgressInfo<T>> {
-        event EventHandler<IProgressChangedEventArgs> ProgressChanged;
+    internal interface IProgressConsumer {
+
+        void ReportProgress(int progress);
     }
 }

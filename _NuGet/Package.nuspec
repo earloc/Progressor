@@ -2,24 +2,23 @@
 <package >
   <metadata>
     <id>Progressor</id>
-    <version>0.0.1-beta1</version>
+    <version>0.2.0</version>
     <title>Progressor</title>
     <authors>Alexander Clare</authors>
     <owners>Alexander Clare</owners>
     <description>
-      Simple, Fast, Versatile Progress Calulation
+      Calculate progress - simple, fast, versatile
     </description>
     <releaseNotes>
     </releaseNotes>
     <summary>
-      Simple, Fast, Versatile Progress Calulation
+      Calculate progress - simple, fast, versatile
     </summary>
     <language>en-US</language>
     <projectUrl>https://nuget.org/packages/Progressor</projectUrl>
     <iconUrl>https://nuget.org/Content/Images/packageDefaultIcon-50x50.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
-    <copyright>Copyright 2016</copyright>
+    <licenseUrl>https://opensource.org/licenses/gpl-2.0.php</licenseUrl>
     <references></references>
     <tags></tags>
   </metadata>

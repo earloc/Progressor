@@ -4,6 +4,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_NuGet", "_NuGet\_NuGet.csproj", "{0451BAEF-DF2E-4B98-8644-94EE9415E389}"
+	ProjectSection(ProjectDependencies) = postProject
+		{84039442-D583-4A60-8782-2D8A502B93F1} = {84039442-D583-4A60-8782-2D8A502B93F1}
+		{FEBB0957-CF47-448E-965B-CCE783CE8BDC} = {FEBB0957-CF47-448E-965B-CCE783CE8BDC}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Progressor.Core", "Progressor.Core\Progressor.Core.csproj", "{FEBB0957-CF47-448E-965B-CCE783CE8BDC}"
 EndProject

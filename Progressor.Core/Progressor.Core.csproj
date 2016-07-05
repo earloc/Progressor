@@ -40,8 +40,11 @@
     <AssemblyOriginatorKeyFile>..\Progressor.Shared\Progressor.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Contractors\ProgressChangedEventArgs.cs" />
     <Compile Include="Contractors\ProgressInfo.cs" />
     <Compile Include="Contractors\ProgressiveIterator.cs" />
+    <Compile Include="Contracts\IProgressConsumer.cs" />
+    <Compile Include="Contracts\IProgressChangedEventArgs.cs" />
     <Compile Include="Contracts\IProgressInfo.cs" />
     <Compile Include="Contracts\IProgressive.cs" />
     <Compile Include="Extensions\DoubleExtensions.cs" />
@@ -56,6 +59,9 @@
   </ItemGroup>
   <Import Project="..\Progressor.Shared\Progressor.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy $(TargetPath) $(SolutionDir)\_Nuget\lib /IRY</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

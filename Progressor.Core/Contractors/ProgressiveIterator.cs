@@ -8,10 +8,11 @@ using System.Collections;
 using Progressor.Contractors;
 
 namespace Progressor.Contractors {
-    internal class ProgressiveIterator<T> : IProgressive<T> {
+    internal class ProgressiveIterator<T> : IProgressive<T>, IProgressConsumer {
 
         private readonly IEnumerable<T> _Source;
         private readonly int _TotalCount;
+        private int _Progress;
 
         public ProgressiveIterator(IEnumerable<T> source, int? totalCount = null) {
             if (source == null)
@@ -32,12 +33,23 @@ namespace Progressor.Contractors {
             }
         }
 
+        public event EventHandler<IProgressChangedEventArgs> ProgressChanged;
+
         public IEnumerator<IProgressInfo<T>> GetEnumerator() {
-            return _Source.Select((x, i) => new ProgressInfo<T>(x, i + 1, _TotalCount)).GetEnumerator();
+            return _Source.Select((x, i) => new ProgressInfo<T>(this, x, i + 1, _TotalCount)).GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator() {
             return GetEnumerator();
         }
+
+        public void ReportProgress(int progress) {
+            var last = _Progress;
+            _Progress = progress;
+
+            if (last != progress)
+                ProgressChanged?.Invoke(this, new ProgressChangedEventArgs { Current = _Progress });
+        }
+
     }
 }
