@@ -10,6 +10,15 @@ namespace Progressor.Samples.Console {
     class Program {
         static void Main(string[] args) {
 
+            LinearProgress();
+
+            NonLinearProgress();
+        }
+
+        private static void NonLinearProgress() {
+        }
+
+        private static void LinearProgress() {
             var items = Enumerable.Range(1, 750).AsProgressive();
 
             items.ProgressChanged += (sender, e) => WriteLine(0, $"Progress: {e.Current}%");
@@ -24,6 +33,7 @@ namespace Progressor.Samples.Console {
             System.Console.WriteLine("done");
             System.Console.ReadKey();
         }
+
         private static void WriteLine(int line, string message) {
             System.Console.CursorTop = line;
             System.Console.CursorLeft = 0;

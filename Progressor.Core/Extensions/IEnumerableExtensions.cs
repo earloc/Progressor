@@ -23,5 +23,9 @@ namespace Progressor.Extensions {
             return new ProgressiveIterator<T>(source, totalCount);
         }
 
+        public static IProgressive<T> AsProgressive<T>(this IEnumerable<T> source, IProgressInfo<T> parent, int? totalCount = null) {
+            return new ProgressiveIterator<T>(source, totalCount);
+        }
+
     }
 }

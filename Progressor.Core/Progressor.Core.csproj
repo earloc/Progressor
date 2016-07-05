@@ -49,10 +49,13 @@
     <Compile Include="Contracts\IProgressChangedEventArgs.cs" />
     <Compile Include="Contracts\IProgressInfo.cs" />
     <Compile Include="Contracts\IProgressive.cs" />
+    <Compile Include="Contracts\IStep.cs" />
     <Compile Include="Extensions\DoubleExtensions.cs" />
     <Compile Include="Extensions\IEnumerableExtensions.cs" />
     <Compile Include="Extensions\Int32Extensions.cs" />
+    <Compile Include="Progressor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Contractors\Step.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Progressor.Shared\Progressor.snk">
