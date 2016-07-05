@@ -53,6 +53,15 @@
     <Compile Include="DoubleExtensionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Progressor.Core\Progressor.Core.csproj">
+      <Project>{febb0957-cf47-448e-965b-cce783ce8bdc}</Project>
+      <Name>Progressor.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
