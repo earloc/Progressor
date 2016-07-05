@@ -5,6 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Progressor.Contracts {
-    public interface IProgressive<T> : IEnumerable<IProgress<T>> {
+    public interface IProgressive<T> : IEnumerable<IProgressInfo<T>> {
     }
 }

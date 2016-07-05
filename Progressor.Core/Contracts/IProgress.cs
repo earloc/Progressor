@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Progressor.Contracts {
-    public interface IProgress<T> {
+    public interface IProgressInfo<T> {
         T Item { get; }
         int Progress { get; }
         double Percent { get; }
