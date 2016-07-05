@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Progressor.Core", "Progress
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Progressor.Shared", "Progressor.Shared\Progressor.Shared.shproj", "{F0A5114E-37D5-4FE9-9A2B-7C3B838D480B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Progressor.Tests", "Progressor.Tests\Progressor.Tests.csproj", "{84039442-D583-4A60-8782-2D8A502B93F1}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Progressor.Shared\Progressor.Shared.projitems*{f0a5114e-37d5-4fe9-9a2b-7c3b838d480b}*SharedItemsImports = 13
@@ -27,6 +29,10 @@ Global
 		{FEBB0957-CF47-448E-965B-CCE783CE8BDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FEBB0957-CF47-448E-965B-CCE783CE8BDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FEBB0957-CF47-448E-965B-CCE783CE8BDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84039442-D583-4A60-8782-2D8A502B93F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84039442-D583-4A60-8782-2D8A502B93F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84039442-D583-4A60-8782-2D8A502B93F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84039442-D583-4A60-8782-2D8A502B93F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
