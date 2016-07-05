@@ -15,6 +15,9 @@ namespace Progressor.Contracts {
         /// </summary>
         event EventHandler<IProgressChangedEventArgs> ProgressChanged;
 
+        /// <summary>
+        /// returns the total count of elements of this instance
+        /// </summary>
         int Count { get; }
     }
 }
