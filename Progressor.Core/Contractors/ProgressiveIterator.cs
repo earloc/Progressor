@@ -50,7 +50,7 @@ namespace Progressor.Contractors {
         public event EventHandler<IProgressChangedEventArgs> ProgressChanged;
 
         public IEnumerator<IProgressInfo<T>> GetEnumerator() {
-            return _Source.Select((x, i) => new ProgressInfo<T>(this, x, i + 1, _TotalCount, _RoundigPrecision)).GetEnumerator();
+            return _Source.Select((x, i) => new ProgressInfo<T>(this, x, i, _TotalCount, _RoundigPrecision)).GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator() {

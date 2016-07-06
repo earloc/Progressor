@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Progressor.Extensions;
 
 namespace Progressor {
+    [Obsolete("Experimental API")]
     public class Progressor {
         public Progressor(params int[] distribution) {
             if (distribution == null)
