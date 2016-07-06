@@ -8,7 +8,7 @@ using Progressor.Extensions;
 
 namespace Progressor.Contractors {
     internal class ProgressInfo<T> : IProgressInfo<T> {
-        public ProgressInfo(IProgressConsumer consumer, T item, int current, int total) {
+        public ProgressInfo(IProgressConsumer consumer, T item, int zeroBasedIndex, int total, int? precision = null) {
             Item = item;
 
             if (total < 0)
@@ -18,14 +18,24 @@ namespace Progressor.Contractors {
                 Percent = Progress = 100;
                 return;
             }
+            var iteration = zeroBasedIndex + 1;
+            Index = zeroBasedIndex;
 
-            var percent = Percent = current.AsPercentOf(total);
+            var percent = Math.Max(0, Math.Min(100, iteration.AsPercentOf(total)));
 
-            var progress = Convert.ToInt16(Math.Round(Math.Max(0, Math.Min(100, percent))));
+            if (precision.HasValue)
+                percent = Math.Round(percent, precision.Value);
+
+            Percent = percent;
+
+            var progress = Convert.ToInt16(Math.Round(percent));
+
             consumer.ReportProgress(Progress = progress);
         }
 
         public T Item { get; }
+
+        public int Index { get; }
 
         public double Percent { get; }
 

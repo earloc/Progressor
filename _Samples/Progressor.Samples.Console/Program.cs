@@ -26,7 +26,7 @@ namespace Progressor.Samples.Console {
             var rand = new Random();
 
             foreach (var x in items) {
-                WriteLine(1, $"Item: {x.Item} / {items.Count}, Progress: {x.Progress}%, Percent: {x.Percent} %");
+                WriteLine(1, $"Item: {x.Item} / {items.Count}, Progress: {x.Progress}%, Percent: {x.Percent} %, Index: {x.Index}");
                 Thread.Sleep(rand.Next(100));
             }
 

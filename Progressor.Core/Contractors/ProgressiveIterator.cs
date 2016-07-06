@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
 using Progressor.Contractors;
+using Progressor.Extensions;
 
 namespace Progressor.Contractors {
     internal class ProgressiveIterator<T> : IProgressive<T>, IProgressConsumer {
@@ -13,6 +14,8 @@ namespace Progressor.Contractors {
         private readonly IEnumerable<T> _Source;
         private readonly int _TotalCount;
         private int _Progress;
+        private int? _RoundigPrecision;
+
 
         public int Count {
             get {
@@ -20,9 +23,14 @@ namespace Progressor.Contractors {
             }
         }
 
-        public ProgressiveIterator(IEnumerable<T> source, int? totalCount = null) {
+        public ProgressiveIterator(IEnumerable<T> source, int? totalCount = null, int? roundingPrecision = null) {
             if (source == null)
                 throw new ArgumentNullException(nameof(source), "must not be null");
+
+            _RoundigPrecision = roundingPrecision ?? IEnumerableExtensions.DefaultRoundingPrecision;
+
+            if (_RoundigPrecision < 0)
+                throw new ArgumentOutOfRangeException(nameof(roundingPrecision), _RoundigPrecision, "must be >= 0");
 
             _Source = source;
 
@@ -42,7 +50,7 @@ namespace Progressor.Contractors {
         public event EventHandler<IProgressChangedEventArgs> ProgressChanged;
 
         public IEnumerator<IProgressInfo<T>> GetEnumerator() {
-            return _Source.Select((x, i) => new ProgressInfo<T>(this, x, i + 1, _TotalCount)).GetEnumerator();
+            return _Source.Select((x, i) => new ProgressInfo<T>(this, x, i, _TotalCount, _RoundigPrecision)).GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator() {
