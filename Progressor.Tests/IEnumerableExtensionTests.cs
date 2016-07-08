@@ -10,7 +10,7 @@ namespace Progressor.Tests {
         public void IteratingOver100ElementsYieldsEachPercent() {
             foreach (var x in Enumerable.Range(1, 100).AsProgressive()) {
                 var actual = x.Progress;
-                var expected = x.Item;
+                var expected = x.Index;
 
                 Assert.AreEqual(expected, actual);
             }

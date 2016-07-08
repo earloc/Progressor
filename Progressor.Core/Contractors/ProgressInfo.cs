@@ -8,37 +8,64 @@ using Progressor.Extensions;
 
 namespace Progressor.Contractors {
     internal class ProgressInfo<T> : IProgressInfo<T> {
-        public ProgressInfo(IProgressConsumer consumer, T item, int zeroBasedIndex, int total, int? precision = null) {
-            Item = item;
 
+        private readonly int? _Precision;
+
+        public ProgressInfo(T item, int zeroBasedIndex, int total, int? precision = null) {
+            Item = item;
             if (total < 0)
                 throw new ArgumentOutOfRangeException(nameof(total), total, "must be >= 0");
 
             if (total == 0) {
-                Percent = Progress = 100;
+                _Percent = 100;
                 return;
             }
-            var iteration = zeroBasedIndex + 1;
+            Total = total;
+
             Index = zeroBasedIndex;
+            var iteration = Iteration = zeroBasedIndex + 1;
 
-            var percent = Math.Max(0, Math.Min(100, iteration.AsPercentOf(total)));
+            _Percent = Index.AsPercentOf(total);
 
-            if (precision.HasValue)
-                percent = Math.Round(percent, precision.Value);
-
-            Percent = percent;
-
-            var progress = Convert.ToInt16(Math.Round(percent));
-
-            consumer.ReportProgress(Progress = progress);
+            _Precision = precision;
         }
 
         public T Item { get; }
-
+        public int Iteration { get; }
         public int Index { get; }
+        public int Total { get; }
 
-        public double Percent { get; }
+        private double _Percent = 0d;
 
-        public int Progress { get; }
+        public double Percent {
+            get {
+                var percent = Math.Max(0, Math.Min(100, _Percent + SubProgress.PercentOf(100d / Total)));
+                if (_Precision.HasValue)
+                    percent = Math.Round(percent, _Precision.Value);
+                return percent;
+            }
+        }
+
+        public int Progress {
+            get {
+                return Convert.ToInt16(Math.Round(_Percent));
+            }
+        }
+
+        private double _SubProgress;
+        public double SubProgress {
+            get {
+                return _SubProgress;
+            }
+
+            set {
+                _SubProgress = value;
+                ProgressChanged?.Invoke(this, new ProgressChangedEventArgs() {
+                    Percent = Percent
+                });
+            }
+        }
+
+        public event EventHandler<IProgressChangedEventArgs> ProgressChanged;
     }
 }

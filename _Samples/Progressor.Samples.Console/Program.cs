@@ -5,23 +5,66 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Progressor.Extensions;
+using Progressor.Contracts;
 
 namespace Progressor.Samples.Console {
     class Program {
-        static void Main(string[] args) {
 
-            LinearProgress();
+        private class IntWithRange {
+            public IntWithRange(int value) {
+                Value = value;
+            }
 
-            NonLinearProgress();
+            public int Value { get; }
+
+            public IEnumerable<IntWithRange> Children { get; set; }
+
         }
 
-        private static void NonLinearProgress() {
+        static void Main(string[] args) {
+
+            System.Console.CursorVisible = false;
+            //LinearProgress();
+
+            ThreeDimensionalLinearProgress().Wait();
+        }
+
+        private static async Task ThreeDimensionalLinearProgress() {
+            var random = new Random();
+            var hierarchy = from i in Enumerable.Range(1, 3)
+                            select new IntWithRange(i) {
+                            Children = from j in Enumerable.Range(1, random.Next(1, 60))
+                                        select new IntWithRange(i * j) {
+                                        Children = from k in Enumerable.Range(1, random.Next(1, 120))
+                                                   select new IntWithRange(i * j * k) {
+                                                       Children = from m in Enumerable.Range(1, random.Next(1, 240))
+                                                                  select new IntWithRange(i * j * k * m)
+                                                   }
+                                     }
+                            };
+            foreach (var a in hierarchy.AsProgressive().Poll( p => WriteLine(0, $"Overall Progress: {p} %"))) {
+                foreach (var b in a.Item.Children.AsProgressive(a)) {
+                    foreach (var c in b.Item.Children.AsProgressive(b)) {
+                        WriteLine(2, $"1st level Item         {a.Iteration} / {a.Total} ({a.Percent}%)");
+                        WriteLine(4, $" 2nd level Item         {b.Iteration} / {b.Total} ({b.Percent}%)");
+                        WriteLine(6, $"  3rd level Item         {c.Iteration} / {c.Total} ({c.Percent}%)");
+                        await Task.Delay(50);
+                    }
+                }
+            }
+
+            System.Console.ReadKey();
+        }
+
+     
+        private static void ProgressiveHierarchy_ProgressChanged(object sender, IProgressChangedEventArgs e) {
+            
         }
 
         private static void LinearProgress() {
             var items = Enumerable.Range(1, 750).AsProgressive();
 
-            items.ProgressChanged += (sender, e) => WriteLine(0, $"Progress: {e.Current}%");
+            //items.ProgressChanged += (sender, e) => WriteLine(0, $"Progress: {e.Current}%");
 
             var rand = new Random();
 
@@ -34,10 +77,13 @@ namespace Progressor.Samples.Console {
             System.Console.ReadKey();
         }
 
+        private static object _ConsoleLock = new object();
         private static void WriteLine(int line, string message) {
-            System.Console.CursorTop = line;
-            System.Console.CursorLeft = 0;
-            System.Console.WriteLine(message.PadRight(80));
+            lock (_ConsoleLock) {
+                System.Console.CursorTop = line;
+                System.Console.CursorLeft = 0;
+                System.Console.WriteLine(message.PadRight(80));
+            }
         }
     }
 }

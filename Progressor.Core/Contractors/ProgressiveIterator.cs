@@ -9,13 +9,11 @@ using Progressor.Contractors;
 using Progressor.Extensions;
 
 namespace Progressor.Contractors {
-    internal class ProgressiveIterator<T> : IProgressive<T>, IProgressConsumer {
+    internal class ProgressiveIterator<T> : IProgressive<T> {
 
         private readonly IEnumerable<T> _Source;
         private readonly int _TotalCount;
-        private int _Progress;
         private int? _RoundigPrecision;
-
 
         public int Count {
             get {
@@ -23,9 +21,26 @@ namespace Progressor.Contractors {
             }
         }
 
-        public ProgressiveIterator(IEnumerable<T> source, int? totalCount = null, int? roundingPrecision = null) {
+        public bool EnumerationFinished {
+            get; private set;
+        }
+
+        private double _Progress;
+        public double Progress {
+            get { return _Progress; }
+            private set {
+                _Progress = value;
+                if (_Parent != null)
+                    _Parent.SubProgress = Progress;
+            }
+        }
+
+        private readonly IProgressInfo _Parent;
+        public ProgressiveIterator(IEnumerable<T> source, IProgressInfo parent, int? totalCount = null, int? roundingPrecision = null) {
             if (source == null)
                 throw new ArgumentNullException(nameof(source), "must not be null");
+
+            _Parent = parent;
 
             _RoundigPrecision = roundingPrecision ?? IEnumerableExtensions.DefaultRoundingPrecision;
 
@@ -33,7 +48,6 @@ namespace Progressor.Contractors {
                 throw new ArgumentOutOfRangeException(nameof(roundingPrecision), _RoundigPrecision, "must be >= 0");
 
             _Source = source;
-
             if (totalCount.HasValue) {
                 if (totalCount.Value < 0)
                     throw new ArgumentOutOfRangeException(nameof(totalCount), totalCount, "must be >= 0");
@@ -47,22 +61,27 @@ namespace Progressor.Contractors {
             }
         }
 
-        public event EventHandler<IProgressChangedEventArgs> ProgressChanged;
-
         public IEnumerator<IProgressInfo<T>> GetEnumerator() {
-            return _Source.Select((x, i) => new ProgressInfo<T>(this, x, i, _TotalCount, _RoundigPrecision)).GetEnumerator();
+            var index = 0;
+            EnumerationFinished = false;
+            foreach (var item in _Source) {
+
+                var progress = new ProgressInfo<T>(item, index++, _TotalCount, _RoundigPrecision);
+                Progress = progress.Percent;
+                progress.ProgressChanged += Progress_ProgressChanged;
+                yield return progress;
+            }
+
+            Progress = 100;
+            EnumerationFinished = true;
+        }
+
+        private void Progress_ProgressChanged(object sender, IProgressChangedEventArgs e) {
+            Progress = e.Percent;
         }
 
         IEnumerator IEnumerable.GetEnumerator() {
             return GetEnumerator();
-        }
-
-        public void ReportProgress(int progress) {
-            var last = _Progress;
-            _Progress = progress;
-
-            if (last != progress)
-                ProgressChanged?.Invoke(this, new ProgressChangedEventArgs { Current = _Progress });
         }
 
     }

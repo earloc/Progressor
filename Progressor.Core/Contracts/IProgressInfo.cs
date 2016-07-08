@@ -5,16 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Progressor.Contracts {
-    /// <summary>
-    /// provides progress information during enumeration of an <see cref="Progressor.Contracts.IProgressive{T}"/>
-    /// </summary>
-    /// <typeparam name="T">the original type which gets enumerated</typeparam>
-    public interface IProgressInfo<T> {
+    public interface IProgressInfo {
         /// <summary>
-        /// the original item that is enumerated
+        /// returns the zero based index of the current iteration
         /// </summary>
-        T Item { get; }
-
         int Index { get; }
 
         /// <summary>
@@ -25,5 +19,21 @@ namespace Progressor.Contracts {
         /// the raw (unrounded) percentage, can reach values above 100
         /// </summary>
         double Percent { get; }
+
+        int Total { get; }
+
+        int Iteration { get; }
+        double SubProgress { get; set; }
+    }
+
+    /// <summary>
+    /// provides progress information during enumeration of an <see cref="IProgressive{T}"/>
+    /// </summary>
+    /// <typeparam name="T">the original type which gets enumerated</typeparam>
+    public interface IProgressInfo<T> : IProgressInfo {
+        /// <summary>
+        /// the original item that is enumerated
+        /// </summary>
+        T Item { get; }
     }
 }

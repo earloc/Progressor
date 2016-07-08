@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 using Progressor.Extensions;
 
 namespace Progressor {
+    /// <summary>
+    /// class for descending into hierarchical progress calculation
+    /// </summary>
     [Obsolete("Experimental API")]
     public class Progressor {
         public Progressor(params int[] distribution) {
@@ -19,10 +22,11 @@ namespace Progressor {
 
             var sum = distribution.Sum();
 
-
             Steps = distribution.Select(x => new Step(x.AsPercentOf(sum)));
         }
-
+        /// <summary>
+        /// returns the configured steps of this Progressor
+        /// </summary>
         public IEnumerable<IStep> Steps { get; set; }
 
     }

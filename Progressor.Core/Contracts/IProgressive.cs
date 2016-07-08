@@ -5,19 +5,23 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Progressor.Contracts {
-    /// <summary>
-    /// wrapping interface supporting progress information during enumerations
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public interface IProgressive<T> : IEnumerable<IProgressInfo<T>> {
-        /// <summary>
-        /// indicates that the overall progress has changed, e.g.: from 41 to 42.
-        /// </summary>
-        event EventHandler<IProgressChangedEventArgs> ProgressChanged;
 
+
+    public interface IProgressive {
         /// <summary>
         /// returns the total count of elements of this instance
         /// </summary>
         int Count { get; }
+
+        bool EnumerationFinished { get; }
+        double Progress { get; }
+    }
+
+    /// <summary>
+    /// wrapping interface supporting progress information during enumerations
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public interface IProgressive<T> : IEnumerable<IProgressInfo<T>>, IProgressive {
+        
     }
 }

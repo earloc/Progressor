@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Progressor.Contractors {
     internal class ProgressChangedEventArgs : IProgressChangedEventArgs {
-        public int Current {
+        public double Percent{
             get; internal set;
         }
     }
