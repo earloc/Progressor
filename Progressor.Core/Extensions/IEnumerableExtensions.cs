@@ -37,11 +37,11 @@ namespace Progressor.Extensions {
         /// <param name="roundingPrecision">the number of decimals percentage values should be rounded to. If ommitted or null, <see cref="DefaultRoundingPrecision"/> is used</param>
         /// <returns></returns>
         public static IProgressive<T> AsProgressive<T> (this IEnumerable<T> source, int? totalCount = null, int? roundingPrecision = null) {
-            return new ProgressiveIterator<T>(source, null, totalCount, roundingPrecision);
+            return new Progressive<T>(source, null, totalCount, roundingPrecision);
         }
 
         public static IProgressive<T> AsProgressive<T>(this IEnumerable<T> source, IProgressInfo parent, int? totalCount = null, int? roundingPrecision = null) {
-            return new ProgressiveIterator<T>(source, parent, totalCount, roundingPrecision);
+            return new Progressive<T>(source, parent, totalCount, roundingPrecision);
         }
 
         public static IProgressive<T> Poll<T>(this IProgressive<T> source, Action<double> poll) {

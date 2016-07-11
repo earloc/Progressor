@@ -9,7 +9,7 @@ using Progressor.Contractors;
 using Progressor.Extensions;
 
 namespace Progressor.Contractors {
-    internal class ProgressiveIterator<T> : IProgressive<T> {
+    internal class Progressive<T> : IProgressive<T> {
 
         private readonly IEnumerable<T> _Source;
         private readonly int _TotalCount;
@@ -36,7 +36,7 @@ namespace Progressor.Contractors {
         }
 
         private readonly IProgressInfo _Parent;
-        public ProgressiveIterator(IEnumerable<T> source, IProgressInfo parent, int? totalCount = null, int? roundingPrecision = null) {
+        public Progressive(IEnumerable<T> source, IProgressInfo parent, int? totalCount = null, int? roundingPrecision = null) {
             if (source == null)
                 throw new ArgumentNullException(nameof(source), "must not be null");
 
