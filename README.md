@@ -2,7 +2,7 @@
 -----------------------------------
 ##Calculate progress - simple, fast, versatile, cross-platform
 
-Progressor makes calculation of progress as simple as enumerating a collection:
+Progressor makes calculating progress as simple as enumerating a collection:
 
     foreach (var x in Enumerable.Range(1, 200).AsProgressive()) {
         Console.WriteLine($"CurrentValue: {x.Item}");
