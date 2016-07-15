@@ -9,16 +9,20 @@ using System.Threading.Tasks;
 
 namespace Progressor {
     internal class ProgressiveEnumerator<T> : IEnumerator<IProgressInfo<T>> {
-
-        public ProgressiveEnumerator(Progressive<T> parent, IEnumerable<T> source, int total, int? roundingPrecision) {
-            _Parent = parent;
+        
+        public ProgressiveEnumerator(Progressive<T> owner, IEnumerable<T> source, int total, int? roundingPrecision, ISupportSubProgress parent) {
+            _Owner = owner;
 
             var wrapped = source.Select((item, index) => new ProgressInfo<T>(item, index, total, roundingPrecision));
 
             _Enumerator = wrapped.GetEnumerator();
+            _Parent = parent;
         }
+
+        
         private IEnumerator<ProgressInfo<T>> _Enumerator;
-        private readonly Progressive<T> _Parent;
+        private readonly Progressive<T> _Owner;
+        private readonly ISupportSubProgress _Parent;
 
         private ProgressInfo<T> _Current;
         public IProgressInfo<T> Current {
@@ -44,7 +48,7 @@ namespace Progressor {
                 _Enumerator.Dispose();
                 _Current = null;
                 _Enumerator = null;
-                _Parent.Finished();
+                _Owner.Finished();
             }
         }
 
@@ -56,8 +60,8 @@ namespace Progressor {
                 return false;
 
             _Current = _Enumerator.Current;
-            _Parent.Percent = _Current.Percent;
-
+            _Owner.Percent = _Current.Percent;
+            _Parent?.SetSubProgress(_Current.Percent);
             _Current.ProgressChanged += _Current_ProgressChanged;
 
             return ok;
@@ -69,7 +73,8 @@ namespace Progressor {
         }
 
         private void _Current_ProgressChanged(object sender, IProgressChangedEventArgs e) {
-            _Parent.Percent = e.Percent;
+            _Owner.Percent = e.Percent;
+            _Parent?.SetSubProgress(_Current.Percent);
         }
 
         public void Reset() {

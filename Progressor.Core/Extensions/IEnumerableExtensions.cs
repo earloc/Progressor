@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 namespace Progressor.Extensions {
+
     /// <summary>
     /// IEnumerable Extensions for progress aware enumerations
     /// </summary>
@@ -29,6 +30,7 @@ namespace Progressor.Extensions {
                 _DefaultRoundingPrecision = value;
             }
         }
+
         /// <summary>
         /// wraps an Enumerable to gain progress information during enumeration
         /// </summary>
@@ -38,7 +40,7 @@ namespace Progressor.Extensions {
         /// <param name="roundingPrecision">the number of decimals percentage values should be rounded to. If ommitted or null, <see cref="DefaultRoundingPrecision"/> is used</param>
         /// <returns></returns>
         public static IProgressive<T> AsProgressive<T> (this IEnumerable<T> source, int? totalCount = null, int? roundingPrecision = null) {
-            return new Progressive<T>(source, null, totalCount, roundingPrecision);
+            return source.AsProgressive(null, totalCount, roundingPrecision);
         }
 
         /// <summary>

@@ -58,7 +58,7 @@ namespace Progressor.Contractors {
         private readonly ISupportSubProgress _Parent;
 
         public IEnumerator<IProgressInfo<T>> GetEnumerator() {
-            return new ProgressiveEnumerator<T>(this, _Source, _TotalCount, _RoundigPrecision);
+            return new ProgressiveEnumerator<T>(this, _Source, _TotalCount, _RoundigPrecision, _Parent);
         }
 
         private void Progress_ProgressChanged(object sender, IProgressChangedEventArgs e) {

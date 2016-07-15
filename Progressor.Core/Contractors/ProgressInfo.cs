@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 using Progressor.Extensions;
 
 namespace Progressor.Contractors {
-    internal class ProgressInfo<T> : IProgressInfo<T> {
+    internal class ProgressInfo<T> : IProgressInfo<T>, ISupportSubProgress {
 
         private readonly int? _Precision;
-
         public ProgressInfo(T item, int zeroBasedIndex, int total, int? precision = null) {
             Item = item;
             if (total < 0)
@@ -39,7 +38,7 @@ namespace Progressor.Contractors {
 
         public double Percent {
             get {
-                var percent = Math.Max(0, Math.Min(100, _Percent + SubProgress.PercentOf(100d / Total)));
+                var percent = Math.Max(0, Math.Min(100, _Percent + SubProgress/ 100d));
                 if (_Precision.HasValue)
                     percent = Math.Round(percent, _Precision.Value);
                 return percent;
@@ -57,15 +56,15 @@ namespace Progressor.Contractors {
             get {
                 return _SubProgress;
             }
-
-            set {
-                _SubProgress = value;
-                ProgressChanged?.Invoke(this, new ProgressChangedEventArgs() {
-                    Percent = Percent
-                });
-            }
         }
 
         public event EventHandler<IProgressChangedEventArgs> ProgressChanged;
+
+        public void SetSubProgress(double value) {
+            _SubProgress = value;
+            ProgressChanged?.Invoke(this, new ProgressChangedEventArgs() {
+                Percent = Percent
+            });
+        }
     }
 }
