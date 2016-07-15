@@ -34,7 +34,9 @@ It even comes with two handy extension methods
 for calculating values  
     Console.WriteLine(42.PercentOf(200));
 >84  
-or percentage  
+
+or percentage
+  
     Console.WriteLine(84.AsPercentOf(200));
 >42
 
