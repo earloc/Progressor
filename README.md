@@ -1,6 +1,6 @@
 # Progressor
-====================================
-Calculate progress - simple, fast, versatile, cross-platform
+-----------------------------------
+##Calculate progress - simple, fast, versatile, cross-platform
 
 Progressor makes calculation of progress as simple as enumerating a collection:
 
@@ -36,7 +36,7 @@ for calculating values
 >84  
 
 or percentage
-  
+
     Console.WriteLine(84.AsPercentOf(200));
 >42
 
