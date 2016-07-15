@@ -30,11 +30,11 @@ You can "descent" into deeper iterations, maintaining gloabl and local progress:
 
 If you ever found yourself figuring out this nasty percent-calculation formular in excel for the 1000´s time, this lib is for you!
 
-It even comes with two handy extension methods
-for calculating values
+It even comes with two handy extension methods  
+for calculating values  
     Console.WriteLine(42.PercentOf(200));
->84
-or percentage
+>84  
+or percentage  
     Console.WriteLine(84.AsPercentOf(200));
 >42
 
