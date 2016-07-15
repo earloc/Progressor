@@ -17,7 +17,7 @@ You can "descent" into deeper iterations, maintaining gloabl and local progress:
     foreach (var x in Enumerable.Range(1, 200).AsProgressive()) {
         foreach (var y in Enumerable.Range(1, 100).AsProgressive(x)) {
             foreach (var z in Enumerable.Range(1, 50).AsProgressive(z)) {
-                Console.WriteLine($"Iteration y {z.Iteration} / {z.Total} ({z.Percent})");
+                Console.WriteLine($"Iteration z {z.Iteration} / {z.Total} ({z.Percent})");
                 Console.WriteLine($"Iteration y {y.Iteration} / {y.Total} ({y.Percent})");
                 Console.WriteLine($"Iteration x {x.Iteration} / {x.Total} ({x.Percent})");
             }
