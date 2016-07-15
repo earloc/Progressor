@@ -32,6 +32,7 @@ If you ever found yourself figuring out this nasty percent-calculation formular 
 
 It even comes with two handy extension methods  
 for calculating values  
+
     Console.WriteLine(42.PercentOf(200));
 >84  
 
