@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace Progressor.Contracts {
     /// <summary>
-    /// EventArg-abstraction for <see cref="IProgressive{T}.ProgressChanged"/>
+    /// EventArg-abstraction for <see cref="IProgressive{T}"/>
     /// </summary>
     public interface IProgressChangedEventArgs {
+        /// <summary>
+        /// returns the current percentage of a progressive enumeration
+        /// </summary>
         double Percent { get; }
     }
 }

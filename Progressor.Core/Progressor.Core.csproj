@@ -52,6 +52,7 @@
     <Compile Include="Extensions\DoubleExtensions.cs" />
     <Compile Include="Extensions\IEnumerableExtensions.cs" />
     <Compile Include="Extensions\Int32Extensions.cs" />
+    <Compile Include="ProgressiveEnumerator.cs" />
     <Compile Include="Progressor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Contractors\Step.cs" />

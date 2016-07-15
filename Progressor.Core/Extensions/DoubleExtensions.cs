@@ -22,14 +22,15 @@ namespace Progressor.Extensions {
         }
 
         /// <summary>
-        /// calculates the percentage of <paramref name="value"/> in respect to <paramref name="total"/>
-        /// e.g.: <paramref name="value"/> = 50, <paramref name="total"/> = 200 -> returns 25
+        /// calculates the percentage of <paramref name="value"/> in respect to <paramref name="from"/>
+        /// e.g.: <paramref name="value"/> = 50, <paramref name="from"/> = 200 -> returns 25
         /// </summary>
         /// <param name="value"></param>
-        /// <param name="total"></param>
-        /// <returns>the percentage of <paramref name="value"/> in respect to <paramref name="total"/></returns>
-        public static double AsPercentOf(this double value, double total) {
-            return value * 100d / total;
+        /// <param name="from"></param>
+        /// <returns>the percentage of <paramref name="value"/> in respect to <paramref name="from"/></returns>
+        public static double AsPercentOf(this double value, double from) {
+            return value / from * 100d;
+            
         }
     }
 }

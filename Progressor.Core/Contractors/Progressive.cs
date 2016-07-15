@@ -9,7 +9,7 @@ using Progressor.Contractors;
 using Progressor.Extensions;
 
 namespace Progressor.Contractors {
-    internal class Progressive<T> : IProgressive<T> {
+    internal class Progressive<T> : IProgressiveInternal<T> {
 
         private readonly IEnumerable<T> _Source;
         private readonly int _TotalCount;
@@ -21,26 +21,20 @@ namespace Progressor.Contractors {
             }
         }
 
-        public bool EnumerationFinished {
-            get; private set;
-        }
-
         private double _Progress;
-        public double Progress {
+        public double Percent {
             get { return _Progress; }
-            private set {
+            internal set {
                 _Progress = value;
-                if (_Parent != null)
-                    _Parent.SubProgress = Progress;
+                _Parent?.SetSubProgress(value);
             }
         }
 
-        private readonly IProgressInfo _Parent;
         public Progressive(IEnumerable<T> source, IProgressInfo parent, int? totalCount = null, int? roundingPrecision = null) {
             if (source == null)
                 throw new ArgumentNullException(nameof(source), "must not be null");
 
-            _Parent = parent;
+            _Parent = parent as ISupportSubProgress;
 
             _RoundigPrecision = roundingPrecision ?? IEnumerableExtensions.DefaultRoundingPrecision;
 
@@ -61,28 +55,22 @@ namespace Progressor.Contractors {
             }
         }
 
+        private readonly ISupportSubProgress _Parent;
+
         public IEnumerator<IProgressInfo<T>> GetEnumerator() {
-            var index = 0;
-            EnumerationFinished = false;
-            foreach (var item in _Source) {
-
-                var progress = new ProgressInfo<T>(item, index++, _TotalCount, _RoundigPrecision);
-                Progress = progress.Percent;
-                progress.ProgressChanged += Progress_ProgressChanged;
-                yield return progress;
-            }
-
-            Progress = 100;
-            EnumerationFinished = true;
+            return new ProgressiveEnumerator<T>(this, _Source, _TotalCount, _RoundigPrecision);
         }
 
         private void Progress_ProgressChanged(object sender, IProgressChangedEventArgs e) {
-            Progress = e.Percent;
+            Percent = e.Percent;
         }
 
         IEnumerator IEnumerable.GetEnumerator() {
             return GetEnumerator();
         }
 
+        public void Finished() {
+            Percent = 100;
+        }
     }
 }

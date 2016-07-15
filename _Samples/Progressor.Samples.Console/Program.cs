@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Progressor.Extensions;
 using Progressor.Contracts;
+using System.Collections;
 
 namespace Progressor.Samples.Console {
     class Program {
@@ -22,9 +23,8 @@ namespace Progressor.Samples.Console {
         }
 
         static void Main(string[] args) {
-
             System.Console.CursorVisible = false;
-            //LinearProgress();
+            LinearProgress();
 
             ThreeDimensionalLinearProgress().Wait();
         }
@@ -33,11 +33,11 @@ namespace Progressor.Samples.Console {
             var random = new Random();
             var hierarchy = from i in Enumerable.Range(1, 3)
                             select new IntWithRange(i) {
-                            Children = from j in Enumerable.Range(1, random.Next(1, 60))
+                            Children = from j in Enumerable.Range(1, random.Next(1, 6))
                                         select new IntWithRange(i * j) {
-                                        Children = from k in Enumerable.Range(1, random.Next(1, 120))
+                                        Children = from k in Enumerable.Range(1, random.Next(1, 12))
                                                    select new IntWithRange(i * j * k) {
-                                                       Children = from m in Enumerable.Range(1, random.Next(1, 240))
+                                                       Children = from m in Enumerable.Range(1, random.Next(1, 24))
                                                                   select new IntWithRange(i * j * k * m)
                                                    }
                                      }
@@ -56,20 +56,14 @@ namespace Progressor.Samples.Console {
             System.Console.ReadKey();
         }
 
-     
-        private static void ProgressiveHierarchy_ProgressChanged(object sender, IProgressChangedEventArgs e) {
-            
-        }
-
         private static void LinearProgress() {
-            var items = Enumerable.Range(1, 750).AsProgressive();
-
-            //items.ProgressChanged += (sender, e) => WriteLine(0, $"Progress: {e.Current}%");
-
             var rand = new Random();
 
-            foreach (var x in items) {
-                WriteLine(1, $"Item: {x.Item} / {items.Count}, Progress: {x.Progress}%, Percent: {x.Percent} %, Index: {x.Index}");
+            foreach (var x in Enumerable.Range(1, 200).AsProgressive()) {
+                WriteLine(1, $"CurrentValue: {x.Item}");
+                WriteLine(2, $"Iteration {x.Iteration} / {x.Total} ({x.Percent})");
+
+                //WriteLine(1, $"Item: {x.Item} / {items.Count}, Progress: {x.Progress}%, Percent: {x.Percent} %, Index: {x.Index}");
                 Thread.Sleep(rand.Next(100));
             }
 

@@ -13,6 +13,10 @@ namespace Progressor {
     /// </summary>
     [Obsolete("Experimental API")]
     public class Progressor {
+        /// <summary>
+        /// initilaizes a new instance of Progressor
+        /// </summary>
+        /// <param name="distribution"></param>
         public Progressor(params int[] distribution) {
             if (distribution == null)
                 throw new ArgumentNullException(nameof(distribution), "must not be null");
