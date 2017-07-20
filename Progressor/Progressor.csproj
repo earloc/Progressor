@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.1</TargetFramework>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>C:\working\git\eSc\Progressor\Progressor.snk</AssemblyOriginatorKeyFile>
+    <PackageTags>progress calculate percent cross platform fast simple enumeration progressive iteration extension</PackageTags>
+    <Summary>Calculate progress - simple, fast, versatile, cross-platform</Summary>
+    <PackageReleaseNotes>+ 1.0.0 - Targets .nettandard 1.0
++ 0.3.0 - API normalization, support for hierarchical enumeration</PackageReleaseNotes>
+    <Description>Calculate progress - simple, fast, versatile, cross-platform
+
+Progressor makes calculation of progress as simple as enumerating a collection
+You can even "descent" into deeper iterations, maintaining gloabl and local progress
+If you ever found yourself figuring out this nasty percent-calculation-formular in excel for the 1000´s time, this lib is for you!</Description>
+    <Authors>Alexander Clare</Authors>
+    <Company>Alexander Clare</Company>
+    <PackageProjectUrl>https://github.com/earloc/Progressor</PackageProjectUrl>
+    <PackageIconUrl>https://nuget.org/Content/Images/packageDefaultIcon-50x50.png</PackageIconUrl>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <PackageLicenseUrl>https://opensource.org/licenses/gpl-2.0.php</PackageLicenseUrl>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\Progressor.snk" Link="Properties\Progressor.snk" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+</Project>

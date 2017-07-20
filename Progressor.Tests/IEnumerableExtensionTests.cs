@@ -1,10 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
-using Progressor.Extensions;
 using System.Collections.Generic;
-using Progressor.Contracts;
-using Progressor.Contractors;
 
 namespace Progressor.Tests {
     [TestClass]

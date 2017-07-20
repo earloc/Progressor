@@ -35,7 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>..\Progressor.Shared\Progressor.snk</AssemblyOriginatorKeyFile>
@@ -67,15 +67,15 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Progressor.Core\Progressor.Core.csproj">
-      <Project>{febb0957-cf47-448e-965b-cce783ce8bdc}</Project>
-      <Name>Progressor.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\Progressor.Shared\Progressor.snk">
       <Link>Properties\Progressor.snk</Link>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Progressor\Progressor.csproj">
+      <Project>{1f93f34c-2f4a-4a72-947b-12638cbd1c7f}</Project>
+      <Name>Progressor</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
